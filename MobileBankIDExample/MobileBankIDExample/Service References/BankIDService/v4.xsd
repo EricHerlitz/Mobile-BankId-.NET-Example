@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:tns="http://bankid.com/RpService/v4.0.0/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://bankid.com/RpService/v4.0.0/types/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="PersonalNumberType">
+    <xsd:annotation>
+      <xsd:documentation>
+				An personal number should have length 12 and contain only digits. Specific certificate policies can use 10 - 12 digits.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{10,12}" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ProgressStatusType">
+    <xsd:restriction base="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>
+					The values may be changed later.
+				</xsd:documentation>
+      </xsd:annotation>
+      <xsd:enumeration value="OUTSTANDING_TRANSACTION" />
+      <xsd:enumeration value="NO_CLIENT" />
+      <xsd:enumeration value="STARTED" />
+      <xsd:enumeration value="USER_SIGN" />
+      <xsd:enumeration value="USER_REQ" />
+      <xsd:enumeration value="COMPLETE" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="UserInfoType">
+    <xsd:sequence>
+      <xsd:element name="givenName" type="xsd:string" />
+      <xsd:element name="surname" type="xsd:string" />
+      <xsd:element name="name" type="xsd:string" />
+      <xsd:element name="personalNumber" type="tns:PersonalNumberType" />
+      <xsd:element name="notBefore" type="xsd:dateTime" />
+      <xsd:element name="notAfter" type="xsd:dateTime" />
+      <xsd:element name="ipAddress" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EndUserInfoType">
+    <xsd:sequence>
+      <xsd:element name="type">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1" />
+            <xsd:maxLength value="20" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="value">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1" />
+            <xsd:maxLength value="1024" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RequirementType">
+    <xsd:sequence>
+      <xsd:sequence>
+        <xsd:element minOccurs="1" maxOccurs="10" name="condition" type="tns:ConditionType" />
+      </xsd:sequence>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RequirementAlternativesType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="7" name="requirement" type="tns:RequirementType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ConditionType">
+    <xsd:sequence>
+      <xsd:element name="key" type="tns:RequirementConditionNameType" />
+      <xsd:element minOccurs="1" maxOccurs="20" name="value">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1" />
+            <xsd:maxLength value="1024" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="RequirementConditionNameType">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1" />
+      <xsd:maxLength value="50" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="FaultStatusType">
+    <xsd:restriction base="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>
+					The values may be changed later.
+				</xsd:documentation>
+      </xsd:annotation>
+      <xsd:enumeration value="INVALID_PARAMETERS" />
+      <xsd:enumeration value="ACCESS_DENIED_RP" />
+      <xsd:enumeration value="CLIENT_ERR" />
+      <xsd:enumeration value="CERTIFICATE_ERR" />
+      <xsd:enumeration value="RETRY" />
+      <xsd:enumeration value="INTERNAL_ERROR" />
+      <xsd:enumeration value="ALREADY_COLLECTED" />
+      <xsd:enumeration value="EXPIRED_TRANSACTION" />
+      <xsd:enumeration value="ALREADY_IN_PROGRESS" />
+      <xsd:enumeration value="USER_CANCEL" />
+      <xsd:enumeration value="CANCELLED" />
+      <xsd:enumeration value="REQ_PRECOND" />
+      <xsd:enumeration value="REQ_ERROR" />
+      <xsd:enumeration value="REQ_BLOCKED" />
+      <xsd:enumeration value="START_FAILED" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="AuthenticateRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="personalNumber" type="tns:PersonalNumberType" />
+      <xsd:element minOccurs="0" maxOccurs="20" name="endUserInfo" type="tns:EndUserInfoType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="requirementAlternatives" type="tns:RequirementAlternativesType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SignRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="personalNumber" type="tns:PersonalNumberType" />
+      <xsd:element name="userVisibleData" type="xsd:string" />
+      <xsd:element minOccurs="0" name="userNonVisibleData" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="20" name="endUserInfo" type="tns:EndUserInfoType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="requirementAlternatives" type="tns:RequirementAlternativesType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FileSignRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="personalNumber" type="tns:PersonalNumberType" />
+      <xsd:element name="userVisibleData" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="userNonVisibleData" type="xsd:string" />
+      <xsd:element name="fileName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:minLength value="5" />
+            <xsd:maxLength value="340" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element xmime:contentType="application/octet-stream" xmime:expectedContentTypes="application/octet-stream" name="fileContent" type="xsd:base64Binary" />
+      <xsd:element minOccurs="0" maxOccurs="20" name="endUserInfo" type="tns:EndUserInfoType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="requirementAlternatives" type="tns:RequirementAlternativesType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CollectResponseType">
+    <xsd:sequence>
+      <xsd:element name="progressStatus" type="tns:ProgressStatusType" />
+      <xsd:sequence minOccurs="0">
+        <xsd:element name="signature" type="xsd:string" />
+        <xsd:element name="userInfo" type="tns:UserInfoType" />
+        <xsd:element name="ocspResponse" type="xsd:string" />
+      </xsd:sequence>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RpFaultType">
+    <xsd:sequence>
+      <xsd:element name="faultStatus" type="tns:FaultStatusType" />
+      <xsd:element name="detailedDescription" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AuthenticateRequest" type="tns:AuthenticateRequestType" />
+  <xsd:element name="SignRequest" type="tns:SignRequestType" />
+  <xsd:element name="FileSignRequest" type="tns:FileSignRequestType" />
+  <xsd:complexType name="OrderResponseType">
+    <xsd:sequence>
+      <xsd:element name="orderRef" type="xsd:string" />
+      <xsd:element name="autoStartToken" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="orderRef" type="xsd:string" />
+  <xsd:element name="SignResponse" type="tns:OrderResponseType" />
+  <xsd:element name="AuthResponse" type="tns:OrderResponseType" />
+  <xsd:element name="FileSignResponse" type="tns:OrderResponseType" />
+  <xsd:element name="CollectResponse" type="tns:CollectResponseType" />
+  <xsd:element name="RpFault" type="tns:RpFaultType" />
+</xsd:schema>
