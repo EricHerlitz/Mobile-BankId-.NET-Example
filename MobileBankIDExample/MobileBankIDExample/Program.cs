@@ -22,7 +22,7 @@ namespace MobileBankIDExample
                 Console.WriteLine("Enter your ssn, 10 or 12 digits (YY)YYMMDDNNNN");
 
                 // format ssn
-                string ssn = GetSsn();
+                string ssn = "197807064337"; //GetSsn();
 
                 // authenticate request and return order
                 var order = Authenticate(ssn);
@@ -80,6 +80,10 @@ namespace MobileBankIDExample
                 {
                     // ...collect the response
                     result = client.Collect(order.orderRef);
+
+                    Console.WriteLine(result.progressStatus);
+                    System.Threading.Thread.Sleep(1000);
+
                 } while (result.progressStatus != ProgressStatusType.COMPLETE);
 
 
