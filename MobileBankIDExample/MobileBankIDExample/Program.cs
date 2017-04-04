@@ -22,7 +22,7 @@ namespace MobileBankIDExample
                 Console.WriteLine("Enter your ssn, 10 or 12 digits (YY)YYMMDDNNNN");
 
                 // format ssn
-                string ssn = "197807064337";// GetSsn();
+                string ssn = GetSsn();
 
                 // authenticate request and return order
                 var order = Authenticate(ssn);
