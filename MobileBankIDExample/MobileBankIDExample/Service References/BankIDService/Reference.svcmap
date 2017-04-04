@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="https://appapi.test.bankid.com/rp/v4?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://appapi2.test.bankid.com/rp/v4?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="v4.xsd" MetadataType="Schema" ID="c2390655-c8b4-42ae-a76b-70d42e133ad7" SourceId="1" SourceUrl="https://appapi.test.bankid.com/rp/v4?xsd=RpService_v4.xsd" />
-    <MetadataFile FileName="RpService.wsdl" MetadataType="Wsdl" ID="d7cf173b-ea1f-4673-9a3f-e566371a1430" SourceId="1" SourceUrl="https://appapi.test.bankid.com/rp/v4?wsdl" />
+    <MetadataFile FileName="RpService1.wsdl" MetadataType="Wsdl" ID="2a2aa288-e61e-46f0-b391-daf6b3d71bef" SourceId="1" SourceUrl="https://appapi2.test.bankid.com/rp/v4?wsdl" />
+    <MetadataFile FileName="v41.xsd" MetadataType="Schema" ID="6d018192-2d38-4f48-8aef-46f60cc78b14" SourceId="1" SourceUrl="https://appapi2.test.bankid.com/rp/v4?xsd=RpService_v4.xsd" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

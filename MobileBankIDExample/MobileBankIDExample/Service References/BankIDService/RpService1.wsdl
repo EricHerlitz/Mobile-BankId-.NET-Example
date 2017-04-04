@@ -9,7 +9,7 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema>
-      <xsd:import schemaLocation="https://appapi.test.bankid.com/rp/v4?xsd=RpService_v4.xsd" namespace="http://bankid.com/RpService/v4.0.0/types/" />
+      <xsd:import schemaLocation="https://appapi2.test.bankid.com/rp/v4?xsd=RpService_v4.xsd" namespace="http://bankid.com/RpService/v4.0.0/types/" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="RpServicePortType_Sign">
@@ -115,7 +115,7 @@
   </wsdl:binding>
   <wsdl:service name="RpService">
     <wsdl:port name="RpServiceSoapPort" binding="tns:RpServiceSoapBinding">
-      <soap:address location="https://appapi.test.bankid.com/rp/v4" />
+      <soap:address location="https://appapi2.test.bankid.com/rp/v4" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

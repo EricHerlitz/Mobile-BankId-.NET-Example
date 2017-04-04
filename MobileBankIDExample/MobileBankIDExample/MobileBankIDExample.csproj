@@ -71,8 +71,8 @@
     <None Include="Service References\BankIDService\MobileBankIDExample.BankIDService.SignResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\BankIDService\RpService.wsdl" />
-    <None Include="Service References\BankIDService\v4.xsd">
+    <None Include="Service References\BankIDService\RpService1.wsdl" />
+    <None Include="Service References\BankIDService\v41.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

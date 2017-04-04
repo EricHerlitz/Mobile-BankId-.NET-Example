@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="98U4ljGud9hoXbpn/1afOkqYAnI=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="eTYNyyvlhk02iaFDTzL9jlOGOaE=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="customBinding" name="RpServiceSoapBinding">
       <properties>
@@ -160,10 +160,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="RpServiceSoapPort" contract="BankIDService.RpServicePortType" bindingType="customBinding" address="https://appapi.test.bankid.com/rp/v4" bindingConfiguration="RpServiceSoapBinding">
+    <endpoint name="RpServiceSoapPort" contract="BankIDService.RpServicePortType" bindingType="customBinding" address="https://appapi2.test.bankid.com/rp/v4" bindingConfiguration="RpServiceSoapBinding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://appapi.test.bankid.com/rp/v4</serializedValue>
+          <serializedValue>https://appapi2.test.bankid.com/rp/v4</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
